@@ -4,91 +4,93 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-// Assets
-import actionShot1 from '../../../assets/action_shot_1.jpg';
-import restaurantImg from '../../../assets/restaurant.jpg';
-import caveDetail from '../../../assets/cave_detail.jpg';
-import viewImg from '../../../assets/view_1.jpg';
+// Real Raw Assets
+import showImg from '../../../assets/raw/Venta-El-Gallo-1-1280x961-2.jpg';
+import restaurantImg from '../../../assets/raw/Restaurante-Venta-El-Gallo-Alhambra-de-Granada-1-1.jpg';
+import eventsImg from '../../../assets/raw/Cueva-Venta-El-Gallo-6-Julio-2-1280x914-2.jpg';
+import locationImg from '../../../assets/raw/Venta-El-Gallo-38-1.jpg';
 
 const Pillars = () => {
   const { t } = useTranslation();
 
   const entryPoints = [
     { 
-      title: 'El Espectáculo', 
-      desc: 'Zambra pura en el corazón del Sacromonte.', 
-      img: actionShot1,
+      title: 'Zambra', 
+      desc: 'El Espectáculo Primitivo', 
+      img: showImg,
       link: '/artistas',
       num: '01'
     },
     { 
       title: 'Gastronomía', 
-      desc: 'Sabores tradicionales tallados en la roca.', 
+      desc: 'Cocina de Tradición', 
       img: restaurantImg,
       link: '/restaurante',
       num: '02'
     },
     { 
       title: 'Eventos', 
-      desc: 'Celebraciones con alma y duende.', 
-      img: caveDetail,
-      link: '/eventos',
+      desc: 'Exclusividad en el Sacromonte', 
+      img: eventsImg,
+      link: '#', // Placeholder or route
       num: '03'
     },
     { 
-      title: 'Ubicación', 
-      desc: 'Frente a la majestuosidad de la Alhambra.', 
-      img: viewImg,
+      title: 'Vistas', 
+      desc: 'Frente a la Alhambra', 
+      img: locationImg,
       link: '/contacto',
       num: '04'
     }
   ];
 
   return (
-    <section className="py-40 bg-white">
-      <div className="section-container">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
-          <div className="max-w-xl">
-             <h2 className="text-5xl font-serif text-deep-black mb-6">El Corazón del Sacromonte</h2>
-             <p className="text-gray-400 font-light italic">Cuatro dimensiones de una experiencia única en el mundo.</p>
-          </div>
-          <div className="w-12 h-12 border border-black/10 rounded-full flex items-center justify-center animate-bounce">
-            <ArrowRight className="rotate-90 text-gold" size={16} />
-          </div>
-        </div>
+    <section className="bg-deep-black text-metallic-white relative z-20">
+      {/* Fluid Ecosystem Grid - No borders, just pure imagery and gradients */}
+      <div className="flex flex-col md:flex-row w-full h-auto min-h-[60vh]">
+        {entryPoints.map((point, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.15 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex-1 relative group h-[280px] md:h-auto overflow-hidden cursor-pointer"
+          >
+            {/* Background Image: Starts dark and colored, brightens on hover */}
+            <img 
+              src={point.img} 
+              alt={point.title} 
+              className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-all duration-1000 group-hover:scale-110" 
+            />
+            
+            {/* Permanent Gradient Overlay for Text Legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-deep-black/95 via-deep-black/40 to-deep-black/10"></div>
+            
+            <div className="absolute inset-0 bg-deep-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border border-gray-100">
-          {entryPoints.map((point, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative h-[600px] overflow-hidden bg-white hover:bg-deep-black transition-all duration-700"
-            >
-              <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-20 group-hover:opacity-40">
-                 <img src={point.img} className="w-full h-full object-cover" alt={point.title} />
-              </div>
+            {/* Always Visible Layout Numbers */}
+            <div className="absolute top-10 left-10 overflow-hidden">
+               <span className="block text-5xl font-serif text-white/40 group-hover:text-gold transition-colors duration-500 transform group-hover:translate-x-2">{point.num}</span>
+            </div>
+
+            {/* Highly Legible Actionable Content Layer */}
+            <div className="absolute bottom-10 left-10 right-10 z-20 flex flex-col items-start justify-end h-full">
+              <h3 className="text-4xl lg:text-5xl font-serif text-white mb-3 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)]">{point.title}</h3>
+              <p className="text-[10px] md:text-xs uppercase font-bold tracking-[0.2em] text-gold mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                {point.desc}
+              </p>
               
-              <div className="absolute top-12 left-12">
-                 <span className="text-4xl font-serif text-gold/20 group-hover:text-gold/40 transition-colors uppercase">{point.num}</span>
-              </div>
-
-              <div className="absolute bottom-12 left-12 right-12 z-10">
-                <h3 className="text-2xl font-serif text-deep-black group-hover:text-white mb-4 transition-colors">{point.title}</h3>
-                <p className="text-xs text-gray-400 mb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 uppercase tracking-widest font-bold">
-                  {point.desc}
-                </p>
-                <Link 
-                  to={point.link}
-                  className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-gold font-bold opacity-0 group-hover:opacity-100 transition-all duration-700"
-                >
-                  Ver más <ArrowRight size={12} />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              <Link 
+                to={point.link} 
+                className="btn-gold flex items-center gap-3 text-[9px] uppercase tracking-widest px-6 py-3 shadow-lg transform translate-y-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
+              >
+                Vivir la Experiencia <ArrowRight size={14} />
+              </Link>
+            </div>
+            
+          </motion.div>
+        ))}
       </div>
     </section>
   );
