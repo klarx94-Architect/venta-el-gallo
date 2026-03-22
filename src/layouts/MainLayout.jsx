@@ -31,9 +31,9 @@ const MainLayout = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${scrolled ? 'py-4' : 'py-8'} px-6 lg:px-12 pointer-events-none`}>
         <div className={`max-w-7xl mx-auto rounded-full px-8 py-4 flex items-center justify-between transition-all duration-700 pointer-events-auto ${scrolled ? 'bg-deep-black/85 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)]' : 'bg-transparent border border-transparent'}`}>
           <div className="flex items-center gap-12">
-            <Link to="/" className="flex items-center gap-4 group">
-              <img src={logoGallo} alt="Venta El Gallo Logo" className="w-14 h-14 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
-              <span className={`text-lg md:text-xl font-serif font-black tracking-widest uppercase transition-colors duration-500 whitespace-nowrap ${scrolled ? 'text-white' : 'text-white drop-shadow-md'}`}>
+            <Link to="/" className="flex items-center gap-3 md:gap-4 group">
+              <img src={logoGallo} alt="Venta El Gallo Logo" className="w-10 h-10 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
+              <span className={`text-sm md:text-xl font-serif font-black tracking-widest uppercase transition-colors duration-500 whitespace-nowrap hidden xs:block ${scrolled ? 'text-white' : 'text-white'}`}>
                 Venta El Gallo
               </span>
             </Link>
@@ -59,8 +59,10 @@ const MainLayout = () => {
           <Link to="/contacto" className="hidden lg:block btn-gold shadow-[0_0_20px_rgba(212,175,55,0.15)]">
             Vivir la Experiencia
           </Link>
-          <button className="lg:hidden text-white hover:text-gold transition-colors">
-            <Menu size={28} strokeWidth={1.5} />
+          
+          <button className="lg:hidden flex flex-col items-center gap-1 group">
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-white/80 group-hover:text-gold transition-colors">MENU</span>
+            <div className="w-8 h-px bg-gold/60 group-hover:w-10 group-hover:bg-gold transition-all duration-500"></div>
           </button>
         </div>
       </nav>

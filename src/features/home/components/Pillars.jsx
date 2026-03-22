@@ -55,13 +55,13 @@ const Pillars = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.15 }}
             viewport={{ once: true, margin: "-50px" }}
-            className="flex-1 relative group h-[280px] md:h-auto overflow-hidden cursor-pointer"
+            className="flex-1 relative group h-[500px] md:h-auto overflow-hidden cursor-pointer border-b md:border-b-0 border-white/5"
           >
             {/* Background Image: Starts dark and colored, brightens on hover */}
             <img 
               src={point.img} 
               alt={point.title} 
-              className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-all duration-1000 group-hover:scale-110" 
+              className="absolute inset-0 w-full h-full object-cover opacity-60 md:opacity-40 group-hover:opacity-80 transition-all duration-1000 group-hover:scale-110" 
             />
             
             {/* Permanent Gradient Overlay for Text Legibility */}
@@ -75,9 +75,9 @@ const Pillars = () => {
             </div>
 
             {/* Highly Legible Actionable Content Layer */}
-            <div className="absolute bottom-10 left-10 right-10 z-20 flex flex-col items-start justify-end h-full">
-              <h3 className="text-4xl lg:text-5xl font-serif text-white mb-3 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)]">{point.title}</h3>
-              <p className="text-[10px] md:text-xs uppercase font-bold tracking-[0.2em] text-gold mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute bottom-10 left-8 right-8 z-20 flex flex-col items-start justify-end h-full">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-3 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] leading-tight">{point.title}</h3>
+              <p className="text-[10px] md:text-xs uppercase font-black tracking-[0.2em] text-gold mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] opacity-100 md:opacity-90 group-hover:opacity-100 transition-opacity duration-500">
                 {point.desc}
               </p>
               
