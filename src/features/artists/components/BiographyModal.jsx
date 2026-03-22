@@ -37,7 +37,7 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.98, opacity: 0, y: 30 }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="relative w-full max-w-7xl h-full md:h-[80vh] max-h-[1000px] bg-zinc-950 md:rounded-3xl shadow-[0_20px_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col md:flex-row z-10 border-0 md:border border-white/5"
+            className="relative w-full max-w-7xl h-[100dvh] md:h-[80vh] max-h-screen md:max-h-[1000px] bg-zinc-950 md:rounded-3xl shadow-[0_20px_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col md:flex-row z-10 border-0 md:border border-white/5"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top Bar CERRAR PARA MÓVIL (Solo visible < md) */}
@@ -71,6 +71,25 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
               {/* Degradados de fusión para integrar la imagen con el texto */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent md:hidden z-20 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-zinc-950 via-zinc-950/60 to-transparent hidden md:block z-20 pointer-events-none" />
+
+              {/* CONTROLES DE NAVEGACIÓN MÓVIL (Ubicación Estratégica en la unión) */}
+              <div className="absolute bottom-4 left-0 right-0 flex justify-between px-6 md:hidden z-30">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); onPrev(); }}
+                  className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 active:scale-90 active:bg-gold-500/20 active:border-gold-500/40 transition-all shadow-xl"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div className="h-12 flex items-center">
+                   <span className="text-[9px] uppercase tracking-[0.4em] text-white/30 font-bold">Artista</span>
+                </div>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); onNext(); }}
+                  className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 active:scale-90 active:bg-gold-500/20 active:border-gold-500/40 transition-all shadow-xl"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
             </div>
 
             {/* SECCIÓN DERECHA: Contenido y Navegación */}
@@ -120,8 +139,8 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
                 </motion.div>
               </div>
 
-              {/* Barra Inferior CERRADA: Controles Claros y Explícitos */}
-              <div className="shrink-0 bottom-0 p-5 md:p-8 bg-zinc-950/90 backdrop-blur-lg border-t border-white/5 flex justify-between items-center z-20">
+              {/* Barra Inferior CERRADA: Controles Claros y Explícitos (Visible solo en md+) */}
+              <div className="hidden md:flex shrink-0 bottom-0 p-5 md:p-8 bg-zinc-950/90 backdrop-blur-lg border-t border-white/5 justify-between items-center z-20">
                 <button 
                   onClick={(e) => { e.stopPropagation(); onPrev(); }}
                   className="flex items-center gap-3 md:gap-4 text-white/50 hover:text-gold-500 transition-colors group cursor-pointer active:scale-95"

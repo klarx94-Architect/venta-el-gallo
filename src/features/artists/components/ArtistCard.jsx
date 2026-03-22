@@ -40,15 +40,15 @@ const ArtistCard = ({ name, role, imageUrl, description, onOpenBiography }) => {
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-deep-black via-deep-black/60 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-100"></div>
         <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 mix-blend-overlay transition-opacity duration-700"></div>
         
-        {/* Bio summary on hover */}
-        <div className="absolute inset-x-6 bottom-16 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-6 group-hover:translate-y-0">
+        {/* Bio summary: Persistent on mobile, Hover-driven on desktop */}
+        <div className="absolute inset-x-6 bottom-16 flex flex-col justify-end opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 translate-y-0 lg:translate-y-6 lg:group-hover:translate-y-0">
            <p className="text-[12px] lg:text-[13px] text-gray-300 font-light leading-relaxed line-clamp-3 mb-6">
              {description}
            </p>
         </div>
 
-        {/* VER BIOGRAFÍA Button (At the bottom of the image area on hover) */}
-        <div className="absolute inset-x-0 bottom-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-30">
+        {/* VER BIOGRAFÍA Button: Persistent on mobile, Hover-driven on desktop */}
+        <div className="absolute inset-x-0 bottom-6 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 z-30">
           <button 
             onClick={(e) => { e.stopPropagation(); onOpenBiography(); }}
             className="px-8 py-3 bg-white text-deep-black text-[10px] font-black uppercase tracking-[0.3em] rounded-full shadow-2xl hover:bg-gold-500 hover:scale-105 transition-all duration-300 transform"
