@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Hero from './components/Hero';
 import Legacy from './components/Legacy';
@@ -9,8 +8,11 @@ import Pillars from './components/Pillars';
 import Reviews from './components/Reviews';
 import FAQ from './components/FAQ';
 import ctaBg from '../../assets/raw/Cueva-Venta-El-Gallo-6-Julio-2-1280x914-2.jpg';
+import { useBooking } from '../../context/BookingContext';
 
 const Home = () => {
+  const { openBooking } = useBooking();
+
   return (
     <div className="bg-deep-black flex flex-col">
       <Hero />
@@ -28,9 +30,12 @@ const Home = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 tracking-tighter shadow-black drop-shadow-2xl">
               El latido del Sacromonte <br className="hidden md:block"/><span className="italic text-gold">te está esperando.</span>
             </h2>
-            <Link to="/contacto" className="btn-primary flex items-center gap-4 bg-sacromonte-red border-none text-white px-8 py-4 text-xs md:text-sm tracking-[0.2em] font-black uppercase transition-all duration-500 shadow-[0_0_40px_rgba(153,27,27,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] hover:bg-gold hover:text-deep-black transform hover:-translate-y-1">
+            <button 
+              onClick={() => openBooking({ from: 'home_mid' })}
+              className="btn-primary flex items-center gap-4 bg-sacromonte-red border-none text-white px-8 py-4 text-xs md:text-sm tracking-[0.2em] font-black uppercase transition-all duration-500 shadow-[0_0_40px_rgba(153,27,27,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] hover:bg-gold hover:text-deep-black transform hover:-translate-y-1"
+            >
                Reservar Ahora <ArrowRight size={18} />
-            </Link>
+            </button>
          </div>
       </section>
 
@@ -63,10 +68,13 @@ const Home = () => {
             Las plazas en la cueva son limitadas para preservar la pureza acústica y la intimidad del espectáculo. Asegura tu lugar en la Zambra.
           </p>
           
-          <Link to="/contacto" className="btn-gold flex items-center gap-4 text-xs md:text-sm px-10 py-5 shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] relative overflow-hidden group">
+          <button 
+            onClick={() => openBooking({ from: 'home_footer' })}
+            className="btn-gold flex items-center gap-4 text-xs md:text-sm px-10 py-5 shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] relative overflow-hidden group"
+          >
             <span className="relative z-10 font-bold tracking-widest uppercase">Vivir la Experiencia</span>
             <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out z-0"></div>
-          </Link>
+          </button>
         </motion.div>
       </section>
 

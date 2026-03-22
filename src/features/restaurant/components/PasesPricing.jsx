@@ -86,7 +86,7 @@ const PasesPricing = () => {
               </div>
               
               <button 
-                onClick={() => openBooking({ selectedPass: pass.title, priceConfig: pass.price })}
+                onClick={() => openBooking({ from: 'restaurant', pack: pass.id })}
                 className={`mt-auto w-full text-center py-3.5 rounded-full text-[9px] lg:text-[10px] font-black uppercase tracking-[0.25em] transition-all duration-300 border
                 ${pass.highlighted 
                   ? 'bg-deep-black text-gold border-deep-black hover:bg-gold hover:text-deep-black hover:border-gold shadow-md' 

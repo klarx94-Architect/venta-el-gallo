@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import heroBg from '../../../assets/raw/Cueva-Venta-El-Gallo-6-Julio-2-1280x914-2.jpg';
+import { useBooking } from '../../../context/BookingContext';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const { openBooking } = useBooking();
 
   return (
     <section className="relative min-h-[85vh] md:min-h-[95vh] pt-32 lg:pt-40 pb-24 flex items-center overflow-hidden bg-deep-black text-white">
@@ -46,7 +48,10 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
-            <button className="btn-primary flex items-center gap-4 hover:bg-gold hover:text-white transition-colors duration-500 shadow-xl">
+            <button 
+              onClick={() => openBooking({ from: 'home_hero' })}
+              className="btn-primary flex items-center gap-4 hover:bg-gold hover:text-white transition-colors duration-500 shadow-xl"
+            >
                Vivir la Experiencia <ArrowRight size={16} />
             </button>
             <div className="flex flex-col border-l border-white/30 pl-6">
