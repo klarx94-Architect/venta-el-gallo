@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Menu, Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
+import { Menu, Instagram, Facebook, MapPin, Phone, Mail, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logoGallo from '../assets/raw/logoVentaelGallo.webp';
 import FloatingActions from '../components/layout/FloatingActions';
 
@@ -9,6 +7,7 @@ const MainLayout = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,11 +30,19 @@ const MainLayout = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${scrolled ? 'py-4' : 'py-8'} px-6 lg:px-12 pointer-events-none`}>
         <div className={`max-w-7xl mx-auto rounded-full px-8 py-4 flex items-center justify-between transition-all duration-700 pointer-events-auto ${scrolled ? 'bg-deep-black/85 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.5)]' : 'bg-transparent border border-transparent'}`}>
           <div className="flex items-center gap-12">
-            <Link to="/" className="flex items-center gap-3 md:gap-4 group">
+            <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 md:gap-4 group">
               <img src={logoGallo} alt="Venta El Gallo Logo" className="w-10 h-10 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]" />
-              <span className={`text-sm md:text-xl font-serif font-black tracking-widest uppercase transition-colors duration-500 whitespace-nowrap hidden xs:block ${scrolled ? 'text-white' : 'text-white'}`}>
-                Venta El Gallo
-              </span>
+              <div className="flex flex-col items-start leading-none gap-0.5">
+                <span className={`text-xs md:text-xl font-serif font-black tracking-widest uppercase transition-colors duration-500 whitespace-nowrap ${scrolled ? 'text-white' : 'text-white'}`}>
+                  Venta El Gallo
+                </span>
+                {/* Mobile Menu Label - Premium Pulse */}
+                <div className="lg:hidden flex items-center gap-2 w-full mt-0.5">
+                  <div className="h-[0.5px] flex-grow bg-gold/30"></div>
+                  <span className="text-[7px] font-black tracking-[0.4em] uppercase text-gold/80 animate-pulse-gold">MENU</span>
+                  <div className="h-[0.5px] flex-grow bg-gold/30"></div>
+                </div>
+              </div>
             </Link>
             
             <div className="hidden lg:flex items-center gap-8 ml-8">
@@ -60,12 +67,68 @@ const MainLayout = () => {
             Vivir la Experiencia
           </Link>
           
-          <button className="lg:hidden flex flex-col items-center gap-1 group">
-            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-white/80 group-hover:text-gold transition-colors">MENU</span>
-            <div className="w-8 h-px bg-gold/60 group-hover:w-10 group-hover:bg-gold transition-all duration-500"></div>
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden flex flex-col items-center gap-1 group relative z-50 p-2"
+          >
+            <div className={`w-6 h-px bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[1px]' : ''}`}></div>
+            <div className={`w-4 h-px bg-gold transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></div>
+            <div className={`w-6 h-px bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[1px]' : ''}`}></div>
           </button>
         </div>
       </nav>
+
+      {/* Full Screen Mobile Menu - Premium 10k Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[45] bg-deep-black/95 backdrop-blur-3xl flex flex-col items-center justify-center lg:hidden"
+          >
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute top-[20%] left-[-10%] w-[60%] h-[60%] bg-sacromonte-red/10 rounded-full blur-[120px]"></div>
+              <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] bg-gold/5 rounded-full blur-[120px]"></div>
+            </div>
+
+            <div className="flex flex-col items-center gap-12 relative z-10 w-full px-12">
+               {navLinks.map((link, idx) => (
+                 <motion.div
+                   key={link.key}
+                   initial={{ opacity: 0, y: 30 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ delay: 0.1 + idx * 0.1 }}
+                 >
+                   <Link 
+                     to={`/${link.path}`} 
+                     onClick={() => setIsMenuOpen(false)}
+                     className="text-4xl font-serif text-white hover:text-gold transition-colors duration-500 tracking-tighter"
+                   >
+                     {t(`nav.${link.key}`) || link.key}
+                   </Link>
+                 </motion.div>
+               ))}
+               
+               <motion.div
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ delay: 0.5 }}
+                 className="mt-8"
+               >
+                 <Link 
+                   to="/contacto" 
+                   onClick={() => setIsMenuOpen(false)}
+                   className="btn-gold px-12 py-5 shadow-[0_0_40px_rgba(212,175,55,0.2)]"
+                 >
+                   Vivir la Experiencia
+                 </Link>
+               </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Dynamic Content */}
       <main className="flex-grow">
