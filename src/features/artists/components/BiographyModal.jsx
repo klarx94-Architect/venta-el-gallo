@@ -108,8 +108,8 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
                 </button>
               </div>
 
-              {/* Área de Texto con Scroll Fino */}
-              <div className="flex-1 overflow-y-auto p-6 pt-8 md:p-12 md:pt-4 custom-scrollbar">
+              {/* Área de Texto con Scroll Fino y Touch-Safe */}
+              <div className="flex-1 overflow-y-auto p-6 pt-8 md:p-12 md:pt-4 md:custom-scrollbar overscroll-contain touch-pan-y">
                 <motion.div
                   key={artist.name}
                   initial={{ opacity: 0, x: 20 }}
