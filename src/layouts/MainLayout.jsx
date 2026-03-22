@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
 import logoGallo from '../assets/raw/logoVentaelGallo.webp';
+import FloatingActions from '../components/layout/FloatingActions';
 
 const MainLayout = () => {
   const { t } = useTranslation();
@@ -68,6 +69,9 @@ const MainLayout = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
+
+      {/* Global Actions (WhatsApp/ScrollTop) */}
+      <FloatingActions />
 
       {/* Footer - High End Professional */}
       <footer className="bg-gradient-to-b from-deep-black to-[#0a0a0a] pt-24 pb-12 text-white/70 relative overflow-hidden border-t border-white/5">
