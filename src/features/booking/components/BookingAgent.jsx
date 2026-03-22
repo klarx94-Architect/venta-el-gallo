@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useBooking } from '../../context/BookingContext';
+import { useBooking } from '../../../context/BookingContext';
 import { useTranslation } from 'react-i18next';
 import { Calendar, Users, ChevronRight, ChevronLeft, Check, Smartphone } from 'lucide-react';
 
