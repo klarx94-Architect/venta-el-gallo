@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import { Outlet, Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Menu, Instagram, Facebook, MapPin, Phone, Mail, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoGallo from '../assets/raw/logoVentaelGallo.webp';
