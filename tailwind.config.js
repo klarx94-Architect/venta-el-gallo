@@ -23,6 +23,9 @@ export default {
         'deep-black': '#0A0A0A',
         'metallic-white': '#F8F9FA'
       },
+      screens: {
+        'xs': '375px',
+      },
       fontFamily: {
         'serif': ['Playfair Display', 'serif'],
         'sans': ['Inter', 'sans-serif'],

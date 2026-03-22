@@ -55,7 +55,7 @@ const Pillars = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.15 }}
             viewport={{ once: true, margin: "-50px" }}
-            className="flex-1 relative group h-[500px] md:h-auto overflow-hidden cursor-pointer border-b md:border-b-0 border-white/5"
+            className="flex-1 relative group min-h-[500px] md:h-auto overflow-hidden cursor-pointer border-b md:border-b-0 border-white/5"
           >
             {/* Background Image: Starts dark and colored, brightens on hover */}
             <img 
