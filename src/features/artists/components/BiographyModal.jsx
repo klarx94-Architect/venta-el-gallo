@@ -41,7 +41,7 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top Bar CERRAR PARA MÓVIL (Solo visible < md) */}
-            <div className="absolute top-0 right-0 left-0 bg-gradient-to-b from-black/80 to-transparent p-4 flex justify-end md:hidden z-50">
+            <div className="absolute top-0 right-0 left-0 bg-gradient-to-b from-black/60 to-transparent p-4 flex justify-end md:hidden z-[60]">
                <button 
                  onClick={onClose} 
                  className="flex items-center gap-2 p-2 bg-black/40 backdrop-blur-md rounded-full text-white/90 border border-white/10 shadow-lg active:scale-95"
@@ -53,47 +53,42 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
                </button>
             </div>
 
-            {/* SECCIÓN IZQUIERDA: Adaptación Inteligente de Imagen */}
-            <div className="relative w-full h-[45vh] md:w-1/2 md:h-full shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden border-b md:border-b-0 md:border-r border-white/5 isolate">
-              {/* Fondo desenfocado dinámico (Contextual Blur Backdrop) */}
+            {/* SECCIÓN IZQUIERDA: Imagen Fija en Móvil */}
+            <div className="absolute top-0 left-0 right-0 h-[40vh] md:relative md:w-1/2 md:h-full shrink-0 flex items-center justify-center bg-zinc-950 overflow-hidden border-b md:border-b-0 md:border-r border-white/5 isolate z-10">
+              {/* Fondo desenfocado dinámico */}
               <div 
                 className="absolute inset-0 bg-cover bg-center blur-3xl opacity-40 scale-125 saturate-200"
                 style={{ backgroundImage: `url(${artist.imageUrl})` }}
               />
               
-              {/* Imagen Contenida: Jamás se estira ni recorta, adaptándose al espacio disponible */}
               <img 
                 src={artist.imageUrl} 
                 alt={artist.name} 
-                className="relative z-10 w-full h-full object-contain object-center md:p-8 drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)] transition-transform duration-[8000ms] hover:scale-105"
+                className="relative z-20 w-full h-full object-contain object-center p-4 md:p-8 drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
               />
               
-              {/* Degradados de fusión para integrar la imagen con el texto */}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent md:hidden z-20 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-zinc-950 via-zinc-950/60 to-transparent hidden md:block z-20 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent md:hidden z-30 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-zinc-950 via-zinc-950/60 to-transparent hidden md:block z-30 pointer-events-none" />
 
-              {/* CONTROLES DE NAVEGACIÓN MÓVIL (Ubicación Estratégica en la unión) */}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-between px-6 md:hidden z-30">
+              {/* CONTROLES DE NAVEGACIÓN MÓVIL: Flotantes en la base de la imagen */}
+              <div className="absolute bottom-4 left-0 right-0 flex justify-between px-6 md:hidden z-[70]">
                 <button 
                   onClick={(e) => { e.stopPropagation(); onPrev(); }}
-                  className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 active:scale-90 active:bg-gold-500/20 active:border-gold-500/40 transition-all shadow-xl"
+                  className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white active:scale-90 transition-all shadow-2xl"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
                 </button>
-                <div className="h-12 flex items-center">
-                   <span className="text-[9px] uppercase tracking-[0.4em] text-white/30 font-bold">Artista</span>
-                </div>
                 <button 
                   onClick={(e) => { e.stopPropagation(); onNext(); }}
-                  className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 active:scale-90 active:bg-gold-500/20 active:border-gold-500/40 transition-all shadow-xl"
+                  className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white active:scale-90 transition-all shadow-2xl"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
               </div>
             </div>
 
-            {/* SECCIÓN DERECHA: Contenido y Navegación */}
-            <div className="w-full flex-1 md:w-1/2 flex flex-col relative bg-zinc-950">
+            {/* SECCIÓN DERECHA: Zona de Scroll Independiente en Móvil */}
+            <div className="absolute top-[40vh] bottom-0 left-0 right-0 md:relative md:top-0 md:flex-1 md:w-1/2 flex flex-col bg-zinc-950 overflow-y-auto md:overflow-visible z-20 shadow-[0_-20px_40px_rgba(0,0,0,0.5)] md:shadow-none">
               
               {/* Top Bar CERRAR PARA ESCRITORIO (Solo visible md+) */}
               <div className="hidden md:flex justify-end p-8 pb-4 shrink-0 z-20">
@@ -108,8 +103,8 @@ const BiographyModal = ({ artist, isOpen, onClose, onNext, onPrev }) => {
                 </button>
               </div>
 
-              {/* Área de Texto con Scroll Fino y Touch-Safe */}
-              <div className="flex-1 overflow-y-auto p-6 pt-8 md:p-12 md:pt-4 md:custom-scrollbar overscroll-contain touch-pan-y">
+              {/* Contenido de la Biografía */}
+              <div className="p-8 pt-10 md:p-12 md:pt-4">
                 <motion.div
                   key={artist.name}
                   initial={{ opacity: 0, x: 20 }}
