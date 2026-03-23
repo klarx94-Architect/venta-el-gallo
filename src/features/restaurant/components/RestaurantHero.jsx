@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import terraceImg from '../../../assets/raw/restaurant-terrace.jpg';
+import terraceImg from '../../../assets/raw/Restaurante-Venta-El-Gallo-Alhambra-de-Granada-1-1.jpg';
 
 const RestaurantHero = () => {
   return (
     <section className="relative pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden bg-deep-black border-b border-gold/10">
       {/* Dynamic Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
         style={{ backgroundImage: `url(${terraceImg})` }}
       ></div>
       

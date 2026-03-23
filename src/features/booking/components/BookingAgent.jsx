@@ -129,7 +129,7 @@ const BookingAgent = ({ isEmbedded = false }) => {
               <div className="space-y-8 py-4">
                 <header className="text-center mb-12">
                   <span className="text-gold-500 text-[10px] uppercase font-bold tracking-[0.3em] mb-2 block">Paso 01 — El Comienzo</span>
-                  <h2 className="text-4xl font-serif text-deep-black">¿Cuándo vivirás el duende?</h2>
+                  <h2 className="text-4xl font-serif text-deep-black">¿Cuándo nos visitarás?</h2>
                 </header>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
