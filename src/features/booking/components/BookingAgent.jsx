@@ -90,7 +90,7 @@ const BookingAgent = ({ isEmbedded = false }) => {
 
   const containerClasses = isEmbedded 
     ? "w-full max-w-4xl mx-auto bg-white/40 backdrop-blur-xl border border-gold/20 rounded-[2.5rem] shadow-2xl overflow-hidden"
-    : "w-full h-full flex flex-col";
+    : "w-full h-full flex flex-col pt-12 md:pt-0";
 
   return (
     <div className={containerClasses}>
@@ -108,7 +108,7 @@ const BookingAgent = ({ isEmbedded = false }) => {
             }`}>
               {s === 1 && 'Viaje'}
               {s === 2 && 'Pases'}
-              {s === 3 && 'Upsell'}
+              {s === 3 && 'Extras'}
               {s === 4 && 'Cierre'}
             </span>
           </div>
@@ -142,7 +142,7 @@ const BookingAgent = ({ isEmbedded = false }) => {
                     </div>
                     <input 
                       type="date" 
-                      className="w-full bg-transparent border-none focus:ring-0 p-0 text-xl font-light text-deep-black"
+                      className="w-full bg-transparent border-none focus:ring-0 p-0 text-lg md:text-xl font-light text-deep-black"
                       value={booking.date}
                       onChange={(e) => setBooking({...booking, date: e.target.value})}
                     />
@@ -249,8 +249,8 @@ const BookingAgent = ({ isEmbedded = false }) => {
             {phase === 3 && (
               <div className="space-y-8 py-4">
                 <header className="text-center mb-12">
-                  <span className="text-gold-500 text-[10px] uppercase font-bold tracking-[0.3em] mb-2 block">Paso 03 — El Maridaje</span>
-                  <h2 className="text-4xl font-serif text-deep-black">Eleva tu estancia</h2>
+                  <span className="text-gold-500 text-[10px] uppercase font-bold tracking-[0.3em] mb-2 block">Paso 03 — Personalización</span>
+                  <h2 className="text-4xl font-serif text-deep-black">Personaliza tu Experiencia</h2>
                 </header>
 
                 <div className="flex gap-6 overflow-x-auto pb-6 custom-scrollbar px-2">
@@ -340,7 +340,7 @@ const BookingAgent = ({ isEmbedded = false }) => {
       </div>
 
       {/* FOOTER ACTIONS */}
-      <div className="p-6 md:p-10 bg-white border-t border-gray-100 flex flex-col md:flex-row gap-4 justify-between items-center shrink-0">
+      <div className="p-4 md:p-10 bg-white border-t border-gray-100 flex flex-col md:flex-row gap-4 justify-between items-center shrink-0">
         <button 
           onClick={phase === 1 ? (!isEmbedded ? closeBooking : null) : prevPhase}
           className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-all ${

@@ -33,10 +33,10 @@ const BookingAgentModal = () => {
             {/* Close Button */}
             <button 
               onClick={closeBooking}
-              className="absolute top-6 right-6 z-[110] w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-deep-black hover:bg-white/20 transition-all hover:rotate-90"
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-[120] w-10 h-10 md:w-12 md:h-12 rounded-full bg-deep-black text-white border border-gold/50 flex items-center justify-center hover:bg-sacromonte-red transition-all hover:rotate-90 shadow-2xl"
               aria-label="Cerrar"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
 
             <BookingAgent isEmbedded={false} />
