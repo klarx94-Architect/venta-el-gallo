@@ -95,7 +95,7 @@ const BookingAgent = ({ isEmbedded = false }) => {
   return (
     <div className={containerClasses}>
       {/* STEPS INDICATOR */}
-      <div className="flex justify-between items-center p-6 md:px-12 bg-white/50 border-b border-gray-100 shrink-0">
+      <div className={`flex justify-between items-center p-6 md:px-12 bg-white/50 border-b border-gray-100 shrink-0 ${!isEmbedded ? 'pr-20' : ''}`}>
         {[1, 2, 3, 4].map(s => (
           <div key={s} className="flex items-center gap-2">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold border transition-all ${
@@ -353,9 +353,9 @@ const BookingAgent = ({ isEmbedded = false }) => {
         {phase < 4 ? (
           <button 
             onClick={nextPhase}
-            className="w-full md:w-auto px-12 py-5 bg-deep-black text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl hover:shadow-gold-500/20 hover:scale-105 transition-all flex items-center justify-center gap-3 active:scale-95"
+            className="w-full md:w-auto px-16 py-5 bg-gold-500 text-white rounded-full text-[12px] font-bold uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(212,175,55,0.3)] hover:bg-deep-black hover:scale-105 transition-all flex items-center justify-center gap-3 active:scale-95 animate-pulse-gold"
           >
-            Siguiente Paso <ChevronRight size={16} />
+            Continuar <ChevronRight size={18} />
           </button>
         ) : (
           <button 
